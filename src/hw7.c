@@ -1,5 +1,9 @@
-#include "hw7.h"
+#include "../include/hw7.h"
+// Allocate memory for a matrix 'c' 
+//matrix_sf *m = malloc(sizeof(matrix_sf)+num_rows*num_cols*sizeof(int));
 
+//Deallocate 
+//free(m)
 bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
     return NULL;
 }
@@ -12,7 +16,23 @@ void free_bst_sf(bst_sf *root) {
 }
 
 matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
-    return NULL;
+    unsigned int rows = mat1->num_rows;
+    unsigned int cols = mat1->num_cols;
+    matrix_sf *m = malloc(sizeof(matrix_sf) + rows*cols*sizeof(int));
+    m->num_rows = rows;
+    m->num_cols = cols; 
+    m->name = 'm';
+    for(int i = 0; i <= rows; i++){
+        for(int j = 0; j <= cols; j++){
+            //Number of colums or j ?
+            //Somethign at the end of start of the matrix is not being calculated (need to cjeck edge)
+            //{6, 27, 4, -26, 32, 30, 39, 20, 93, -47, -88, 24, 21, 16, -18}
+            // 6 27 4 -26 32 0 39 0 93 -47 0 0 21 0 0
+            m->values[(i*num_cols) + j] = mat1->values[(i*num_cols) + j] + mat2->values[(i*num_cols) + j];
+        }
+    }
+    //print_matrix_sf(m);
+    return m;
 }
 
 matrix_sf* mult_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
