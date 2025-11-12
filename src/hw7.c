@@ -1,4 +1,6 @@
 #include "../include/hw7.h"
+#include <string.h>
+#include <ctype.h>
 // Allocate memory for a matrix 'c' 
 //matrix_sf *m = malloc(sizeof(matrix_sf)+num_rows*num_cols*sizeof(int));
 
@@ -71,14 +73,66 @@ matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
     m->num_cols = cols;
     for(int i = 0; i < rows;i++){
         for(int j = 0; j < cols; j++){
-
+            m->values[i*cols + j] = mat->values[j*rows + i];
         }
     }
-    return NULL;
+    return m;
 }
 
 matrix_sf* create_matrix_sf(char name, const char *expr) {
-    return NULL;
+    //idea parse string, find rows, find cols, loop to find array of ints, allocate approciate memory
+    int len = strlen(expr);
+    const char  *temp = expr;
+    unsigned int rows = 0;
+    unsigned int cols = 0;
+    int index = 0;
+    const char *endptr;
+    //Finding rows and cols values
+    while(*temp){
+        if(isdigit(*temp)){
+            rows = (unsigned int) strtol(temp,&temp,10);
+            break;
+        }
+        else
+            temp++;
+    }
+    while(*temp){
+        if(isdigit(*temp)){
+            cols = (unsigned int) strtol(temp,&temp,10);
+            break;
+        }
+        else
+            temp++;
+    }  
+    //going past left braket
+    temp = strchr(temp, '[');
+    if (!temp) return NULL;
+    temp++;
+
+    //allocate mmemory for matrix
+    matrix_sf *m = malloc(sizeof(matrix_sf) + rows*cols*sizeof(int));
+    m->name = name;
+    m->num_rows =rows;
+    m->num_cols = cols;
+    //assign values to appropriate index using strol to skip over spaces and take care of '-' values aswell. skipping over ';'
+    while(*temp && *temp != ']'){
+        if (*temp == ';' || *temp == '[') {
+            temp++;
+            continue;
+        }
+        //skipping over spaces
+        if(*temp == '-' || isdigit(*temp)){
+            m->values[index] = (int) strtol(temp, &endptr,10);
+            index++;
+            temp = endptr;
+        }
+        else
+            temp++;
+        }   
+    
+    
+    //print_matrix_sf(m);
+    return m;
 }
 
 char* infix2postfix_sf(char *infix) {

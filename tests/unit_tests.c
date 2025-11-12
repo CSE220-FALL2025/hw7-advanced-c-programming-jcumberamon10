@@ -228,7 +228,7 @@ Test(base_operator_return, mult02, .description="Multiply 2 matrices") {
     free(Z);
 }
 Test(base_operator_valgrind, mult02) { expect_no_valgrind_errors(run_with_valgrind("mult02")); }
-/*
+
 Test(base_operator_return, trans01, .description="Transpose a 4x4 matrix") {
     matrix_sf *M = copy_matrix(4, 4, (int[]){-7, 78, -87, -113, -144, -94, 22, -75, -137, -130, -113, -106, 85, -120, 50, 55});
     matrix_sf *G = transpose_mat_sf(M);
@@ -246,7 +246,7 @@ Test(base_operator_return, trans02, .description="Transpose a 6x3 matrix") {
     free(G);
 }
 Test(base_operator_valgrind, trans02) { expect_no_valgrind_errors(run_with_valgrind("trans02")); }
-*/
+
 
 /* insert_bst_sf() tests */
 /*
@@ -403,7 +403,7 @@ Test(base_free_bst, free_bst03, .description="Test if BST is properly deallocate
 }
 Free BST ends here*/
 /* create_matrix_sf() tests*/
-/*
+
 Test(base_create_matrix, create01, .description="Create an 8x1 matrix") {
     matrix_sf *mat = create_matrix_sf('V', "8 1 [-105 ; -19 ; -140 ; 122 ; -123 ; 105 ; 90 ; 90 ; ]");
     expect_matrices_equal(mat, 8, 1, (int[]){-105, -19, -140, 122, -123, 105, 90, 90});
@@ -415,7 +415,7 @@ Test(base_create_matrix, create02, .description="Create a 7x3 matrix") {
     expect_matrices_equal(mat, 7, 3, (int[]){137, 39, 111, -142, -128, -45, 116, -135, 134, 91, 64, 32, 88, 148, 139, 51, -45, 35, 143, 89, -64});
     cr_expect_eq(mat->name, 'Z', "The new matrix did not have the expected name. Actual: %c, Expected: Z", mat->name);
 }
-Create matrix test ends here*/
+
 /* infix2postfix_sf() tests */
 
 /*
