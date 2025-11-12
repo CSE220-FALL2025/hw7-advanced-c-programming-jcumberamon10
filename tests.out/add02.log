@@ -1,14 +1,13 @@
-==12945== Memcheck, a memory error detector
-==12945== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==12945== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==12945== Command: ./bin/add02
-==12945== 
-1 4 -139 169 131 247
-==12945== 
-==12945== HEAP SUMMARY:
-==12945==     in use at exit: 0 bytes in 0 blocks
-==12945==   total heap usage: 4 allocs, 4 frees, 4,180 bytes allocated
-==12945== 
-==12945== All heap blocks were freed -- no leaks are possible
-==12945== 
-==12945== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==8197== Memcheck, a memory error detector
+==8197== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==8197== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==8197== Command: ./bin/add02
+==8197== 
+==8197== 
+==8197== HEAP SUMMARY:
+==8197==     in use at exit: 0 bytes in 0 blocks
+==8197==   total heap usage: 3 allocs, 3 frees, 84 bytes allocated
+==8197== 
+==8197== All heap blocks were freed -- no leaks are possible
+==8197== 
+==8197== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

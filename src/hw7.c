@@ -21,14 +21,17 @@ matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
     matrix_sf *m = malloc(sizeof(matrix_sf) + rows*cols*sizeof(int));
     m->num_rows = rows;
     m->num_cols = cols; 
-    m->name = 'm';
-    for(int i = 0; i <= rows; i++){
-        for(int j = 0; j <= cols; j++){
+    //m->name = 'm'; do i need a name for this matrix or no ?
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
             //Number of colums or j ?
             //Somethign at the end of start of the matrix is not being calculated (need to cjeck edge)
             //{6, 27, 4, -26, 32, 30, 39, 20, 93, -47, -88, 24, 21, 16, -18}
             // 6 27 4 -26 32 0 39 0 93 -47 0 0 21 0 0
-            m->values[(i*num_cols) + j] = mat1->values[(i*num_cols) + j] + mat2->values[(i*num_cols) + j];
+            //printf("%d\n",mat1->values[(i*cols) + j]);
+            //printf("%d\n",mat2->values[(i*cols) + j]);
+            //printf("%d\n",mat1->values[(i*cols) + j] + mat2->values[(i*cols) + j]);
+            m->values[(i*cols) + j] = mat1->values[(i*cols) + j] + mat2->values[(i*cols) + j];
         }
     }
     //print_matrix_sf(m);
@@ -36,10 +39,41 @@ matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
 }
 
 matrix_sf* mult_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
-   return NULL;
+    unsigned int rows = mat1->num_rows;
+    unsigned int cols = mat2->num_cols;
+    unsigned int mid_size = mat1->num_cols;
+    matrix_sf *m = malloc(sizeof(matrix_sf) + rows*cols*sizeof(int));
+    m->num_rows = rows;
+    m->num_cols = cols; 
+    int sum = 0;
+    for(int i = 0; i < rows;i++ ){
+        for(int j = 0; j < cols; j++){
+            sum = 0;
+            for(int k=0; k <mid_size; k++){
+                sum += (mat1->values[(i*mid_size) + k]) * (mat2->values[( k* cols) + j]); 
+            }
+             m->values[i*cols + j] = sum; 
+        }
+        
+    }
+    
+    //print_matrix_sf(m);
+
+   return m;
 }
 
+
 matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
+    unsigned int rows= mat->num_cols;
+    unsigned int cols = mat->num_rows;
+    matrix_sf *m = malloc(sizeof(matrix_sf) + rows*cols*sizeof(int));
+    m->num_rows = rows;
+    m->num_cols = cols;
+    for(int i = 0; i < rows;i++){
+        for(int j = 0; j < cols; j++){
+
+        }
+    }
     return NULL;
 }
 

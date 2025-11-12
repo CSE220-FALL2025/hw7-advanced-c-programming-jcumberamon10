@@ -1,17 +1,27 @@
 {
   "id": "Criterion v2.4.1",
-  "passed": 2,
-  "failed": 2,
+  "passed": 8,
+  "failed": 0,
   "errored": 0,
   "skipped": 0,
   "test_suites": [
     {
       "name": "base_operator_valgrind",
-      "passed": 1,
-      "failed": 1,
+      "passed": 4,
+      "failed": 0,
       "errored": 0,
       "skipped": 0,
       "tests": [
+        {
+          "name": "mult02",
+          "assertions": 1,
+          "status": "PASSED"
+        },
+        {
+          "name": "mult01",
+          "assertions": 1,
+          "status": "PASSED"
+        },
         {
           "name": "add02",
           "assertions": 1,
@@ -20,32 +30,36 @@
         {
           "name": "add01",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:78: Valgrind reported errors -- see tests.out/add01.log"
-          ]
+          "status": "PASSED"
         }
       ]
     },
     {
       "name": "base_operator_return",
-      "passed": 1,
-      "failed": 1,
+      "passed": 4,
+      "failed": 0,
       "errored": 0,
       "skipped": 0,
       "tests": [
         {
-          "name": "add02",
+          "name": "mult02",
+          "assertions": 3,
+          "status": "PASSED"
+        },
+        {
+          "name": "mult01",
           "assertions": 3,
           "status": "PASSED"
         },
         {
           "name": "add01",
           "assertions": 3,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:98: Contents of matrix incorrect. See unit_tests.c or grading_tests.c for expected values."
-          ]
+          "status": "PASSED"
+        },
+        {
+          "name": "add02",
+          "assertions": 3,
+          "status": "PASSED"
         }
       ]
     }

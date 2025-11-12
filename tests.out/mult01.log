@@ -1,0 +1,14 @@
+==8200== Memcheck, a memory error detector
+==8200== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==8200== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==8200== Command: ./bin/mult01
+==8200== 
+6 7 -3748 -1053 14716 4874 -5859 16696 13237 2605 -5401 17667 31821 -3896 35255 38560 -9786 -3271 1016 -6629 17929 -756 5454 5494 -11127 15002 11260 -15 6836 12959 -2214 -6895 16668 33591 7393 38682 46696 1939 -1551 -837 -15292 -2862 -17810 -19496
+==8200== 
+==8200== HEAP SUMMARY:
+==8200==     in use at exit: 0 bytes in 0 blocks
+==8200==   total heap usage: 4 allocs, 4 frees, 4,508 bytes allocated
+==8200== 
+==8200== All heap blocks were freed -- no leaks are possible
+==8200== 
+==8200== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

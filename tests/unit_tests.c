@@ -202,7 +202,7 @@ Test(base_operator_return, add02, .description="Add 2 1x4 matrices") {
 } 
 Test(base_operator_valgrind, add02) { expect_no_valgrind_errors(run_with_valgrind("add02")); }
 //ADD TESTS END HERE
-/*
+
 Test(base_operator_return, mult01, .description="Multiply 2 matrices") {
     matrix_sf *G = copy_matrix(6, 4, (int[]){83, -22, 56, -1, 97, 94, 135, -10, 84, 40, -83, -4, 79, 28, 52, -101, 138, 146, 99, 0, -23, -73, -39, -47});
     matrix_sf *D = copy_matrix(4, 7, (int[]){-77, -20, 111, -2, 41, 117, 118, 21, -29, -45, 135, 98, 54, 131, 54, 1, 80, 143, -127, 148, 114, -81, 87, -33, -2, -6, 115, 59});
@@ -228,7 +228,7 @@ Test(base_operator_return, mult02, .description="Multiply 2 matrices") {
     free(Z);
 }
 Test(base_operator_valgrind, mult02) { expect_no_valgrind_errors(run_with_valgrind("mult02")); }
-
+/*
 Test(base_operator_return, trans01, .description="Transpose a 4x4 matrix") {
     matrix_sf *M = copy_matrix(4, 4, (int[]){-7, 78, -87, -113, -144, -94, 22, -75, -137, -130, -113, -106, 85, -120, 50, 55});
     matrix_sf *G = transpose_mat_sf(M);
@@ -246,8 +246,7 @@ Test(base_operator_return, trans02, .description="Transpose a 6x3 matrix") {
     free(G);
 }
 Test(base_operator_valgrind, trans02) { expect_no_valgrind_errors(run_with_valgrind("trans02")); }
-Multiplly test ENDS HERE */
-
+*/
 
 /* insert_bst_sf() tests */
 /*
