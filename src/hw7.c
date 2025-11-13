@@ -33,8 +33,16 @@ bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
 }
 
 matrix_sf* find_bst_sf(char name, bst_sf *root) {
-    return NULL;
+    if (root == NULL)
+        return NULL;
+    if(root->mat->name == name)
+        return root->mat;
+    if(name < root->mat->name)
+        return find_bst_sf(name, root->left_child);
+    if(name > root->mat->name)
+        return find_bst_sf(name,root->right_child);
 }
+
 
 void free_bst_sf(bst_sf *root) {
 }

@@ -316,7 +316,7 @@ Test(base_insert_bst, insert_bst03, .description="Test if insert_bst_sf creates 
     //INsert BST ends here*/
 
 /* find_bst_sf() tests */
-/*
+
 Test(base_find_bst, search_bst01, .description="Test if find_bst returns the correct matrix.") {
     bst_sf *root = NULL;
     char names[] = "HABETZ";
@@ -386,7 +386,7 @@ Test(base_find_bst, search_bst03, .description="Test if find_bst returns the cor
         free(mats[i]);
     // Note: test does not deallocate memory of BST.  
 }
-    Find BST ends here*/
+ //   Find BST ends here*/
 
 /* free_bst_sf() tests */
 /*
