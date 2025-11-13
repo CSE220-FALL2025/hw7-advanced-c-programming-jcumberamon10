@@ -249,7 +249,7 @@ Test(base_operator_valgrind, trans02) { expect_no_valgrind_errors(run_with_valgr
 
 
 /* insert_bst_sf() tests */
-/*
+
 void inorder_sf(bst_sf *root, char *output) {
     if (!root) return;
     inorder_sf(root->left_child, output);
@@ -313,7 +313,7 @@ Test(base_insert_bst, insert_bst03, .description="Test if insert_bst_sf creates 
         free(mats[i]);
     // Note: test does not deallocate memory of BST.    
 }
-    INsert BST ends here*/
+    //INsert BST ends here*/
 
 /* find_bst_sf() tests */
 /*
