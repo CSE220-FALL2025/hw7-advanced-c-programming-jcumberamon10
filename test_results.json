@@ -23,7 +23,7 @@
           "status": "PASSED"
         },
         {
-          "name": "mult02",
+          "name": "add02",
           "assertions": 1,
           "status": "PASSED"
         },
@@ -33,7 +33,7 @@
           "status": "PASSED"
         },
         {
-          "name": "add02",
+          "name": "mult02",
           "assertions": 1,
           "status": "PASSED"
         },
@@ -57,12 +57,12 @@
           "status": "PASSED"
         },
         {
-          "name": "mult02",
+          "name": "trans01",
           "assertions": 3,
           "status": "PASSED"
         },
         {
-          "name": "trans01",
+          "name": "mult02",
           "assertions": 3,
           "status": "PASSED"
         },
@@ -72,12 +72,12 @@
           "status": "PASSED"
         },
         {
-          "name": "add02",
+          "name": "add01",
           "assertions": 3,
           "status": "PASSED"
         },
         {
-          "name": "add01",
+          "name": "add02",
           "assertions": 3,
           "status": "PASSED"
         }
