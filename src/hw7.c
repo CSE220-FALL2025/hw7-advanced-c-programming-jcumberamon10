@@ -293,6 +293,8 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
             matrix_sf *res = transpose_mat_sf(m1);
             res->name = '?';  
             Mpush(stack, res);
+            if (!isalpha(m1->name))
+                 free(m1);
         }
         else if (c == '+') {
             matrix_sf *m2 = Mpop(stack);

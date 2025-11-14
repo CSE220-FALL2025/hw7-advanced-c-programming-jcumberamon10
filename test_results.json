@@ -1,7 +1,7 @@
 {
   "id": "Criterion v2.4.1",
-  "passed": 68,
-  "failed": 2,
+  "passed": 70,
+  "failed": 0,
   "errored": 0,
   "skipped": 0,
   "test_suites": [
@@ -33,12 +33,12 @@
           "status": "PASSED"
         },
         {
-          "name": "add02",
+          "name": "add01",
           "assertions": 1,
           "status": "PASSED"
         },
         {
-          "name": "add01",
+          "name": "add02",
           "assertions": 1,
           "status": "PASSED"
         }
@@ -67,12 +67,12 @@
           "status": "PASSED"
         },
         {
-          "name": "mult01",
+          "name": "add02",
           "assertions": 3,
           "status": "PASSED"
         },
         {
-          "name": "add02",
+          "name": "mult01",
           "assertions": 3,
           "status": "PASSED"
         },
@@ -186,18 +186,15 @@
     },
     {
       "name": "base_execute_valgrind",
-      "passed": 18,
-      "failed": 2,
+      "passed": 20,
+      "failed": 0,
       "errored": 0,
       "skipped": 0,
       "tests": [
         {
           "name": "trans_mat03",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:78: Valgrind reported errors -- see tests.out/script09.log"
-          ]
+          "status": "PASSED"
         },
         {
           "name": "trans_mat02",
@@ -227,10 +224,7 @@
         {
           "name": "script17",
           "assertions": 1,
-          "status": "FAILED",
-          "messages": [
-            "tests/unit_tests.c:78: Valgrind reported errors -- see tests.out/script17.log"
-          ]
+          "status": "PASSED"
         },
         {
           "name": "script16",
@@ -283,12 +277,12 @@
           "status": "PASSED"
         },
         {
-          "name": "add_mats02",
+          "name": "add_mats03",
           "assertions": 1,
           "status": "PASSED"
         },
         {
-          "name": "add_mats03",
+          "name": "add_mats02",
           "assertions": 1,
           "status": "PASSED"
         },
