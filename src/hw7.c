@@ -1,12 +1,9 @@
+// Jason Cumbe-Ramon
+// SBUID: 112730509
 #include "../include/hw7.h"
 #include <string.h>
 #include <ctype.h>
-// Allocate memory for a matrix 'c' 
-//matrix_sf *m = malloc(sizeof(matrix_sf)+num_rows*num_cols*sizeof(int));
-
-//Deallocate 
-//free(m)
-//character stack struct and functions
+// Character struct implementation to help the infix-postfix functions
 typedef struct {
     char items[MAX_LINE_LEN];
     int top;
@@ -29,6 +26,7 @@ char peek(CharStack *stack){
     return stack->items[stack->top];
 }
 
+//Matrix stack implementation to use when evaluating an expression
 typedef struct {
     matrix_sf *items[MAX_LINE_LEN]; 
     int top;
@@ -55,17 +53,8 @@ matrix_sf* Mpeek(MatrixStack *stack) {
 }
 
 
-
+//recursively inserts node into correct location in bst
 bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
-    // base case 
-    /*
-    typedef struct bst_sf {
-    matrix_sf *mat;
-    struct bst_sf *left_child;
-    struct bst_sf *right_child;
-    } bst_sf;
-
-    */
     if(root == NULL){
         bst_sf *node = malloc(sizeof(bst_sf));
         node->mat = mat;
@@ -82,6 +71,7 @@ bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
     return root;
 }
 
+//recursively finds node in a bst structure
 matrix_sf* find_bst_sf(char name, bst_sf *root) {
     if (root == NULL)
         return NULL;
@@ -94,7 +84,7 @@ matrix_sf* find_bst_sf(char name, bst_sf *root) {
     return NULL;
 }
 
-
+//frees each part of bst and its corresponding matrix nodes
 void free_bst_sf(bst_sf *root) {
     if(root == NULL)
         return;
@@ -110,20 +100,11 @@ matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
     matrix_sf *m = malloc(sizeof(matrix_sf) + rows*cols*sizeof(int));
     m->num_rows = rows;
     m->num_cols = cols; 
-    //m->name = 'm'; do i need a name for this matrix or no ?
     for(unsigned int i = 0; i < rows; i++){
         for(unsigned int j = 0; j < cols; j++){
-            //Number of colums or j ?
-            //Somethign at the end of start of the matrix is not being calculated (need to cjeck edge)
-            //{6, 27, 4, -26, 32, 30, 39, 20, 93, -47, -88, 24, 21, 16, -18}
-            // 6 27 4 -26 32 0 39 0 93 -47 0 0 21 0 0
-            //printf("%d\n",mat1->values[(i*cols) + j]);
-            //printf("%d\n",mat2->values[(i*cols) + j]);
-            //printf("%d\n",mat1->values[(i*cols) + j] + mat2->values[(i*cols) + j]);
             m->values[(i*cols) + j] = mat1->values[(i*cols) + j] + mat2->values[(i*cols) + j];
         }
     }
-    //print_matrix_sf(m);
     return m;
 }
 
@@ -145,9 +126,6 @@ matrix_sf* mult_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
         }
         
     }
-    
-    //print_matrix_sf(m);
-
    return m;
 }
 
@@ -167,7 +145,6 @@ matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
 }
 
 matrix_sf* create_matrix_sf(char name, const char *expr) {
-    //idea parse string, find rows, find cols, loop to find array of ints, allocate approciate memory
     char const *temp = expr;
     unsigned int rows = 0;
     unsigned int cols = 0;
@@ -218,10 +195,10 @@ matrix_sf* create_matrix_sf(char name, const char *expr) {
         }   
     
     
-    //print_matrix_sf(m);
     return m;
 }
 
+//helper functions for infix2postfix
 int precedence(char c) {
     if (c == '\'')
         return 3;
@@ -348,7 +325,7 @@ matrix_sf* execute_script_sf(char *filename) {
     matrix_sf *result_matrix = NULL;
 
     while (getline(&line, &max_line_size, fp) != -1) {
-        // handling empty spaces or empty lines
+        // handling empty spaces or file with only empty lines
         int only_spaces = 1;
         for (int i = 0; line[i] != '\0'; i++) {
             if (!isspace(line[i])) {
@@ -372,7 +349,7 @@ matrix_sf* execute_script_sf(char *filename) {
             ptr++;
         }
 
-        // parsing the RHS of equation
+        // looking for the RHS of equation skipping whitespaces
         char *expr = eq + 1;
         while (*expr && isspace(*expr)) 
                 expr++;
