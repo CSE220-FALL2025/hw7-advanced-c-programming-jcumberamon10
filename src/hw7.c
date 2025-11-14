@@ -171,6 +171,15 @@ matrix_sf* create_matrix_sf(char name, const char *expr) {
     return m;
 }
 
+int precedence(char c) {
+  if (c == '\'')
+    return 3;
+  else if (c == '*')
+    return 2;
+  else if (c == '+')
+    return 1;
+}
+
 char* infix2postfix_sf(char *infix) {
     return NULL;
 }
