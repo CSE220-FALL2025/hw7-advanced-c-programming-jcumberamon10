@@ -29,6 +29,31 @@ char peek(CharStack *stack){
     return stack->items[stack->top];
 }
 
+typedef struct {
+    matrix_sf *items[MAX_LINE_LEN]; 
+    int top;
+} MatrixStack;
+
+void initializeMatrixStack(MatrixStack *stack) {
+    stack->top = -1;
+}
+
+int isEmptyMatrix(MatrixStack *stack) {
+    return stack->top == -1;
+}
+
+void Mpush(MatrixStack *stack, matrix_sf *m) {
+    stack->items[++stack->top] = m;
+}
+
+matrix_sf* Mpop(MatrixStack *stack) {
+    return stack->items[stack->top--];
+}
+
+matrix_sf* Mpeek(MatrixStack *stack) {
+    return stack->items[stack->top];
+}
+
 
 
 bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
@@ -246,7 +271,66 @@ char* infix2postfix_sf(char *infix) {
 }
 
 matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
-    return NULL;
+    //create postfix string to be evaluated
+    char *postfix = infix2postfix_sf(expr);
+    int size = strlen(postfix);
+
+    MatrixStack *stack = malloc(sizeof(MatrixStack));
+    initializeMatrixStack(stack);
+    //evaluating expression 
+    for (int i = 0; i < size; i++) {
+        
+        char c = postfix[i];
+
+        //we find an operand
+        if (isalpha(c)) {
+            matrix_sf *m = find_bst_sf(c, root);
+            Mpush(stack, m);
+        }
+
+        else if (c == '\'') {
+            matrix_sf *m1 = Mpop(stack);
+            matrix_sf *res = transpose_mat_sf(m1);
+            res->name = '?';  
+            Mpush(stack, res);
+        }
+        else if (c == '+') {
+            matrix_sf *m2 = Mpop(stack);
+            matrix_sf *m1 = Mpop(stack);
+            matrix_sf *res = add_mats_sf(m1, m2);
+            res->name = '?'; //temp matrix with a nonalpha value
+
+            Mpush(stack, res);
+
+            // free only temp operands
+            if (!isalpha(m1->name))
+                free(m1);
+            if (!isalpha(m2->name))
+                free(m2);
+        }
+
+        else if (c == '*') {
+
+            matrix_sf *m2 = Mpop(stack);
+            matrix_sf *m1 = Mpop(stack);
+
+            matrix_sf *res = mult_mats_sf(m1, m2);
+            res->name = '?';
+
+            Mpush(stack, res);
+
+            if (!isalpha(m1->name))
+                free(m1);
+            if (!isalpha(m2->name))
+                free(m2);
+        }
+    }
+
+    matrix_sf *result = Mpop(stack);
+    result->name = name;
+    free(postfix);
+    free(stack);
+    return result;
 }
 
 matrix_sf *execute_script_sf(char *filename) {

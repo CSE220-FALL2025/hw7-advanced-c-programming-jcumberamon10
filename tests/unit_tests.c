@@ -449,7 +449,7 @@ Test(base_infix2postfix, infix2postfix04, .description="Convert a complex expres
 //Infix to post fix ends here*/
 
 /* evaluate_expr_sf tests*/
-/*
+
 Test(base_evaluate_expr, expr01, .description="Given root of a tree, evaluation of an expression") {
     bst_sf* root = build_bst();
     matrix_sf* result = evaluate_expr_sf('R', "G * C + F'", root);
@@ -467,7 +467,7 @@ Test(base_evaluate_expr, expr03, .description="Given root of a tree, evaluation 
     matrix_sf* result = evaluate_expr_sf('R', "(I + D' * C) * E' * J", root);
     expect_matrices_equal(result, 4, 3, (int[]){-11171376, 56535582, 3236371, 69463160, -416294603, -47900609, 76095851, -459940949, -56668593, 60848961, -362841916, -37213021});
 }
-evaluate expression ends here*/
+//evaluate expression ends here*/
 /* execute_script_sf tests */
 // 1. call execute_script_sf() to check for correctness()
 // 2. call execute_script_sf() via valgrind to check for memory errors
