@@ -418,7 +418,7 @@ Test(base_create_matrix, create02, .description="Create a 7x3 matrix") {
 
 /* infix2postfix_sf() tests */
 
-/*
+
 Test(base_infix2postfix, infix2postfix01, .description="Convert a simple infix expression to posfix") {
     char *actual = infix2postfix_sf("A+B*C");
     char *expected = "ABC*+";
@@ -446,7 +446,7 @@ Test(base_infix2postfix, infix2postfix04, .description="Convert a complex expres
     cr_expect_arr_eq(actual, expected, strlen(expected), "The returned postfix expression was %s, but it should have been %s",
         actual, expected);
 }
-Infix to post fix ends here*/
+//Infix to post fix ends here*/
 
 /* evaluate_expr_sf tests*/
 /*

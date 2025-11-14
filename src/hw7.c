@@ -6,6 +6,31 @@
 
 //Deallocate 
 //free(m)
+//character stack struct and functions
+typedef struct {
+    char items[MAX_LINE_LEN];
+    int top;
+} CharStack;
+
+void initializeCharStack(CharStack *stack){
+    stack->top = -1;
+}
+int isEmpty(CharStack *stack){
+    return stack->top == -1;
+}
+void Cpush(CharStack *stack, char item){
+    stack->items[++stack->top] = item;
+}
+char Cpop(CharStack *stack){
+    char poppedItem = stack->items[stack->top--];
+    return poppedItem;
+}
+char peek(CharStack *stack){
+    return stack->items[stack->top];
+}
+
+
+
 bst_sf* insert_bst_sf(matrix_sf *mat, bst_sf *root) {
     // base case 
     /*
@@ -179,9 +204,45 @@ int precedence(char c) {
   else if (c == '+')
     return 1;
 }
-
+//Working
 char* infix2postfix_sf(char *infix) {
-    return NULL;
+    int size = strlen(infix);
+    CharStack *operator = malloc(sizeof(CharStack));
+    initializeCharStack(operator);
+
+    char *result = malloc(size + 1);
+    int pos = 0;
+
+    for(int i = 0; i < size; i++){
+        char c = infix[i];
+        if(isalpha(c)){
+            result[pos] = c;
+            pos++;
+        }
+        else if(c == '(')
+            Cpush(operator,c);
+        else if(c == ')'){
+            while(!isEmpty(operator) && peek(operator) != '('){
+                result[pos] = Cpop(operator);
+                pos++;
+            }
+            Cpop(operator);
+        }
+        else{
+            while (!isEmpty(operator) && precedence(peek(operator)) >= precedence(c) && peek(operator) != '(') {
+                result[pos] = Cpop(operator);
+                pos++;
+            }
+            Cpush(operator, c);
+        }
+        
+    }
+    while (!isEmpty(operator)){
+            result[pos++] = Cpop(operator);
+        }
+        result[pos] = '\0';
+    free(operator);
+    return result;
 }
 
 matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
