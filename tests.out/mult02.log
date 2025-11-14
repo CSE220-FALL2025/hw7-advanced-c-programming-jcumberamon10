@@ -1,13 +1,13 @@
-==7313== Memcheck, a memory error detector
-==7313== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==7313== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==7313== Command: ./bin/mult02
-==7313== 
-==7313== 
-==7313== HEAP SUMMARY:
-==7313==     in use at exit: 0 bytes in 0 blocks
-==7313==   total heap usage: 3 allocs, 3 frees, 224 bytes allocated
-==7313== 
-==7313== All heap blocks were freed -- no leaks are possible
-==7313== 
-==7313== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==4552== Memcheck, a memory error detector
+==4552== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==4552== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==4552== Command: ./bin/mult02
+==4552== 
+==4552== 
+==4552== HEAP SUMMARY:
+==4552==     in use at exit: 0 bytes in 0 blocks
+==4552==   total heap usage: 3 allocs, 3 frees, 224 bytes allocated
+==4552== 
+==4552== All heap blocks were freed -- no leaks are possible
+==4552== 
+==4552== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

@@ -389,7 +389,7 @@ Test(base_find_bst, search_bst03, .description="Test if find_bst returns the cor
  //   Find BST ends here*/
 
 /* free_bst_sf() tests */
-/*
+
 Test(base_free_bst, free_bst01, .description="Test if BST is properly deallocated.") {
     expect_no_valgrind_errors(run_with_valgrind("free_bst01"));
 }
@@ -401,7 +401,7 @@ Test(base_free_bst, free_bst02, .description="Test if BST is properly deallocate
 Test(base_free_bst, free_bst03, .description="Test if BST is properly deallocated.") {
     expect_no_valgrind_errors(run_with_valgrind("free_bst03"));
 }
-Free BST ends here*/
+//Free BST ends here*/
 /* create_matrix_sf() tests*/
 
 Test(base_create_matrix, create01, .description="Create an 8x1 matrix") {

@@ -45,6 +45,12 @@ matrix_sf* find_bst_sf(char name, bst_sf *root) {
 
 
 void free_bst_sf(bst_sf *root) {
+    if(root == NULL)
+        return;
+    free_bst_sf(root->left_child);
+    free_bst_sf(root->right_child);
+    free(root->mat);
+    free(root);
 }
 
 matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {

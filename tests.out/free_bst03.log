@@ -1,0 +1,13 @@
+==4521== Memcheck, a memory error detector
+==4521== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==4521== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==4521== Command: ./bin/free_bst03
+==4521== 
+==4521== 
+==4521== HEAP SUMMARY:
+==4521==     in use at exit: 0 bytes in 0 blocks
+==4521==   total heap usage: 38 allocs, 38 frees, 684 bytes allocated
+==4521== 
+==4521== All heap blocks were freed -- no leaks are possible
+==4521== 
+==4521== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
