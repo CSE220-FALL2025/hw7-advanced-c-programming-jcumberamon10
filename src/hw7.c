@@ -91,6 +91,7 @@ matrix_sf* find_bst_sf(char name, bst_sf *root) {
         return find_bst_sf(name, root->left_child);
     if(name > root->mat->name)
         return find_bst_sf(name,root->right_child);
+    return NULL;
 }
 
 
@@ -110,8 +111,8 @@ matrix_sf* add_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
     m->num_rows = rows;
     m->num_cols = cols; 
     //m->name = 'm'; do i need a name for this matrix or no ?
-    for(int i = 0; i < rows; i++){
-        for(int j = 0; j < cols; j++){
+    for(unsigned int i = 0; i < rows; i++){
+        for(unsigned int j = 0; j < cols; j++){
             //Number of colums or j ?
             //Somethign at the end of start of the matrix is not being calculated (need to cjeck edge)
             //{6, 27, 4, -26, 32, 30, 39, 20, 93, -47, -88, 24, 21, 16, -18}
@@ -134,10 +135,10 @@ matrix_sf* mult_mats_sf(const matrix_sf *mat1, const matrix_sf *mat2) {
     m->num_rows = rows;
     m->num_cols = cols; 
     int sum = 0;
-    for(int i = 0; i < rows;i++ ){
-        for(int j = 0; j < cols; j++){
+    for(unsigned int i = 0; i < rows;i++ ){
+        for(unsigned int j = 0; j < cols; j++){
             sum = 0;
-            for(int k=0; k <mid_size; k++){
+            for(unsigned int k=0; k <mid_size; k++){
                 sum += (mat1->values[(i*mid_size) + k]) * (mat2->values[( k* cols) + j]); 
             }
              m->values[i*cols + j] = sum; 
@@ -157,8 +158,8 @@ matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
     matrix_sf *m = malloc(sizeof(matrix_sf) + rows*cols*sizeof(int));
     m->num_rows = rows;
     m->num_cols = cols;
-    for(int i = 0; i < rows;i++){
-        for(int j = 0; j < cols; j++){
+    for(unsigned int i = 0; i < rows;i++){
+        for(unsigned int j = 0; j < cols; j++){
             m->values[i*cols + j] = mat->values[j*rows + i];
         }
     }
@@ -167,16 +168,16 @@ matrix_sf* transpose_mat_sf(const matrix_sf *mat) {
 
 matrix_sf* create_matrix_sf(char name, const char *expr) {
     //idea parse string, find rows, find cols, loop to find array of ints, allocate approciate memory
-    int len = strlen(expr);
-    const char  *temp = expr;
+    char const *temp = expr;
     unsigned int rows = 0;
     unsigned int cols = 0;
     int index = 0;
-    const char *endptr;
+    char *endptr;
     //Finding rows and cols values
     while(*temp){
         if(isdigit(*temp)){
-            rows = (unsigned int) strtol(temp,&temp,10);
+            rows = (unsigned int) strtol((char*)temp,&endptr,10);
+            temp = endptr;
             break;
         }
         else
@@ -184,7 +185,8 @@ matrix_sf* create_matrix_sf(char name, const char *expr) {
     }
     while(*temp){
         if(isdigit(*temp)){
-            cols = (unsigned int) strtol(temp,&temp,10);
+            cols = (unsigned int) strtol((char*)temp,&endptr,10);
+            temp = endptr;
             break;
         }
         else
@@ -200,7 +202,6 @@ matrix_sf* create_matrix_sf(char name, const char *expr) {
     m->name = name;
     m->num_rows =rows;
     m->num_cols = cols;
-    //assign values to appropriate index using strol to skip over spaces and take care of '-' values aswell. skipping over ';'
     while(*temp && *temp != ']'){
         if (*temp == ';' || *temp == '[') {
             temp++;
@@ -222,14 +223,15 @@ matrix_sf* create_matrix_sf(char name, const char *expr) {
 }
 
 int precedence(char c) {
-  if (c == '\'')
-    return 3;
-  else if (c == '*')
-    return 2;
-  else if (c == '+')
-    return 1;
+    if (c == '\'')
+        return 3;
+    else if (c == '*')
+        return 2;
+    else if (c == '+')
+        return 1;
+    return -1;    
 }
-//Working
+
 char* infix2postfix_sf(char *infix) {
     int size = strlen(infix);
     CharStack *operator = malloc(sizeof(CharStack));
@@ -253,7 +255,7 @@ char* infix2postfix_sf(char *infix) {
             }
             Cpop(operator);
         }
-        else{
+        else if (c == '+' || c == '*' || c == '\'') {
             while (!isEmpty(operator) && precedence(peek(operator)) >= precedence(c) && peek(operator) != '(') {
                 result[pos] = Cpop(operator);
                 pos++;
