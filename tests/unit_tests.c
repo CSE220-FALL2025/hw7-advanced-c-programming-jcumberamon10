@@ -471,7 +471,7 @@ Test(base_evaluate_expr, expr03, .description="Given root of a tree, evaluation 
 /* execute_script_sf tests */
 // 1. call execute_script_sf() to check for correctness()
 // 2. call execute_script_sf() via valgrind to check for memory errors
-/*
+
 Test(base_execute, add_mats01) { run_script_without_valgrind("script01"); }
 Test(base_execute_valgrind, add_mats01) { expect_no_valgrind_errors(run_script_with_valgrind("script01")); }
 
@@ -532,4 +532,4 @@ Test(base_execute_valgrind, script19) { expect_no_valgrind_errors(run_script_wit
 Test(base_execute, script20) { run_script_without_valgrind("script20"); } 
 Test(base_execute_valgrind, script20) { expect_no_valgrind_errors(run_script_with_valgrind("script20")); }
 
-Script test end here ! */
+//Script test end here ! */

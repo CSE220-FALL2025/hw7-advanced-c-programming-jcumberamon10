@@ -333,8 +333,71 @@ matrix_sf* evaluate_expr_sf(char name, char *expr, bst_sf *root) {
     return result;
 }
 
-matrix_sf *execute_script_sf(char *filename) {
-   return NULL;
+matrix_sf* execute_script_sf(char *filename) {
+    FILE *fp = fopen(filename, "r");
+    if (!fp) 
+        return NULL;
+
+    bst_sf *root = NULL;
+    char *line = NULL;
+    size_t max_line_size = MAX_LINE_LEN;
+    matrix_sf *result_matrix = NULL;
+
+    while (getline(&line, &max_line_size, fp) != -1) {
+        // handling empty spaces or empty lines
+        int only_spaces = 1;
+        for (int i = 0; line[i] != '\0'; i++) {
+            if (!isspace(line[i])) {
+                only_spaces = 0;
+                break;
+            }
+        }
+        if (only_spaces) 
+            continue;
+
+        char *eq = strchr(line, '=');
+
+        // finding the matrix name before '='
+        char name = '\0';
+        char *ptr = line;
+        while (ptr < eq) {
+            if (isalpha(*ptr)) {
+                name = *ptr;
+                break;
+            }
+            ptr++;
+        }
+
+        // parsing the RHS of equation
+        char *expr = eq + 1;
+        while (*expr && isspace(*expr)) 
+                expr++;
+
+        // checking for matrix literal
+        if (strchr(expr, '[')) {
+            matrix_sf *m = create_matrix_sf(name, expr);
+            root = insert_bst_sf(m, root);
+            result_matrix = m;
+        } else {
+            // Otherwise, evaluate expression
+            matrix_sf *m = evaluate_expr_sf(name, expr, root);
+            root = insert_bst_sf(m, root);
+            result_matrix = m;
+        }
+    }
+    //need to copy matrix to free BST
+    matrix_sf *result = NULL;
+
+    // create deep copy if matrix exist
+    if (result_matrix) {
+        result = copy_matrix(result_matrix->num_rows, result_matrix->num_cols,result_matrix->values);
+        result->name = result_matrix->name; 
+    }
+
+    free_bst_sf(root);
+    free(line);
+    fclose(fp);
+    return result;
 }
 
 // This is a utility function used during testing. Feel free to adapt the code to implement some of
