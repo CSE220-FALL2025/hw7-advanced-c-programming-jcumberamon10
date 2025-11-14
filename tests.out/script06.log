@@ -1,0 +1,14 @@
+==16120== Memcheck, a memory error detector
+==16120== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==16120== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==16120== Command: ./bin/execute_script script06
+==16120== 
+2 6 33 -22 -36 63 -65 53 -6 123 47 -127 -142 52
+==16120== 
+==16120== HEAP SUMMARY:
+==16120==     in use at exit: 0 bytes in 0 blocks
+==16120==   total heap usage: 12 allocs, 12 frees, 10,180 bytes allocated
+==16120== 
+==16120== All heap blocks were freed -- no leaks are possible
+==16120== 
+==16120== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

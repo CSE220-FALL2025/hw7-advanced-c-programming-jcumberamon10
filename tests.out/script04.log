@@ -1,0 +1,14 @@
+==16046== Memcheck, a memory error detector
+==16046== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==16046== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==16046== Command: ./bin/execute_script script04
+==16046== 
+1 1 41058
+==16046== 
+==16046== HEAP SUMMARY:
+==16046==     in use at exit: 0 bytes in 0 blocks
+==16046==   total heap usage: 14 allocs, 14 frees, 10,146 bytes allocated
+==16046== 
+==16046== All heap blocks were freed -- no leaks are possible
+==16046== 
+==16046== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

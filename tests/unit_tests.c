@@ -179,6 +179,7 @@ TestSuite(base_execute_valgrind, .timeout=TEST_TIMEOUT, .disabled=false);
 /* add_mats_sf, mult_mats_sf, transpose_mat_sf tests */
 // 1. call function to check for correctness
 // 2. call function in a main() to check for memory errors
+
 Test(base_operator_return, add01, .description="Add 2 3x5 matrices") {
     matrix_sf *A = copy_matrix(3, 5, (int[]){-4, 18, 6, 7, 10, -14, 29, 8, 21, -99, 0, 7, 5, 2, -9});
     matrix_sf *B = copy_matrix(3, 5, (int[]){10, 9, -2, -33, 22, 44, 10, 12, 72, 52, -88, 17, 16, 14, -9});
@@ -200,6 +201,7 @@ Test(base_operator_return, add02, .description="Add 2 1x4 matrices") {
     free(Z);
 } 
 Test(base_operator_valgrind, add02) { expect_no_valgrind_errors(run_with_valgrind("add02")); }
+//ADD TESTS END HERE
 
 Test(base_operator_return, mult01, .description="Multiply 2 matrices") {
     matrix_sf *G = copy_matrix(6, 4, (int[]){83, -22, 56, -1, 97, 94, 135, -10, 84, 40, -83, -4, 79, 28, 52, -101, 138, 146, 99, 0, -23, -73, -39, -47});
@@ -210,6 +212,10 @@ Test(base_operator_return, mult01, .description="Multiply 2 matrices") {
     free(D);
     free(Z);
 }
+
+
+
+
 Test(base_operator_valgrind, mult01) { expect_no_valgrind_errors(run_with_valgrind("mult01")); }
 
 Test(base_operator_return, mult02, .description="Multiply 2 matrices") {
@@ -241,7 +247,9 @@ Test(base_operator_return, trans02, .description="Transpose a 6x3 matrix") {
 }
 Test(base_operator_valgrind, trans02) { expect_no_valgrind_errors(run_with_valgrind("trans02")); }
 
+
 /* insert_bst_sf() tests */
+
 void inorder_sf(bst_sf *root, char *output) {
     if (!root) return;
     inorder_sf(root->left_child, output);
@@ -305,8 +313,10 @@ Test(base_insert_bst, insert_bst03, .description="Test if insert_bst_sf creates 
         free(mats[i]);
     // Note: test does not deallocate memory of BST.    
 }
+    //INsert BST ends here*/
 
 /* find_bst_sf() tests */
+
 Test(base_find_bst, search_bst01, .description="Test if find_bst returns the correct matrix.") {
     bst_sf *root = NULL;
     char names[] = "HABETZ";
@@ -376,8 +386,10 @@ Test(base_find_bst, search_bst03, .description="Test if find_bst returns the cor
         free(mats[i]);
     // Note: test does not deallocate memory of BST.  
 }
+ //   Find BST ends here*/
 
 /* free_bst_sf() tests */
+
 Test(base_free_bst, free_bst01, .description="Test if BST is properly deallocated.") {
     expect_no_valgrind_errors(run_with_valgrind("free_bst01"));
 }
@@ -389,8 +401,9 @@ Test(base_free_bst, free_bst02, .description="Test if BST is properly deallocate
 Test(base_free_bst, free_bst03, .description="Test if BST is properly deallocated.") {
     expect_no_valgrind_errors(run_with_valgrind("free_bst03"));
 }
-
+//Free BST ends here*/
 /* create_matrix_sf() tests*/
+
 Test(base_create_matrix, create01, .description="Create an 8x1 matrix") {
     matrix_sf *mat = create_matrix_sf('V', "8 1 [-105 ; -19 ; -140 ; 122 ; -123 ; 105 ; 90 ; 90 ; ]");
     expect_matrices_equal(mat, 8, 1, (int[]){-105, -19, -140, 122, -123, 105, 90, 90});
@@ -404,6 +417,8 @@ Test(base_create_matrix, create02, .description="Create a 7x3 matrix") {
 }
 
 /* infix2postfix_sf() tests */
+
+
 Test(base_infix2postfix, infix2postfix01, .description="Convert a simple infix expression to posfix") {
     char *actual = infix2postfix_sf("A+B*C");
     char *expected = "ABC*+";
@@ -431,8 +446,10 @@ Test(base_infix2postfix, infix2postfix04, .description="Convert a complex expres
     cr_expect_arr_eq(actual, expected, strlen(expected), "The returned postfix expression was %s, but it should have been %s",
         actual, expected);
 }
+//Infix to post fix ends here*/
 
 /* evaluate_expr_sf tests*/
+
 Test(base_evaluate_expr, expr01, .description="Given root of a tree, evaluation of an expression") {
     bst_sf* root = build_bst();
     matrix_sf* result = evaluate_expr_sf('R', "G * C + F'", root);
@@ -450,10 +467,11 @@ Test(base_evaluate_expr, expr03, .description="Given root of a tree, evaluation 
     matrix_sf* result = evaluate_expr_sf('R', "(I + D' * C) * E' * J", root);
     expect_matrices_equal(result, 4, 3, (int[]){-11171376, 56535582, 3236371, 69463160, -416294603, -47900609, 76095851, -459940949, -56668593, 60848961, -362841916, -37213021});
 }
-
+//evaluate expression ends here*/
 /* execute_script_sf tests */
 // 1. call execute_script_sf() to check for correctness()
 // 2. call execute_script_sf() via valgrind to check for memory errors
+
 Test(base_execute, add_mats01) { run_script_without_valgrind("script01"); }
 Test(base_execute_valgrind, add_mats01) { expect_no_valgrind_errors(run_script_with_valgrind("script01")); }
 
@@ -514,3 +532,4 @@ Test(base_execute_valgrind, script19) { expect_no_valgrind_errors(run_script_wit
 Test(base_execute, script20) { run_script_without_valgrind("script20"); } 
 Test(base_execute_valgrind, script20) { expect_no_valgrind_errors(run_script_with_valgrind("script20")); }
 
+//Script test end here ! */
